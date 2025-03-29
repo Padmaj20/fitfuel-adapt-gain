@@ -15,14 +15,14 @@ interface WorkoutListProps {
 
 const WorkoutList = ({ workouts, title, showFilters = false }: WorkoutListProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [levelFilter, setLevelFilter] = useState<string>("");
-  const [categoryFilter, setCategoryFilter] = useState<string>("");
+  const [levelFilter, setLevelFilter] = useState<string>("all");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
 
   const filteredWorkouts = workouts.filter((workout) => {
     const matchesSearch = workout.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            workout.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLevel = levelFilter ? workout.level === levelFilter : true;
-    const matchesCategory = categoryFilter ? workout.category === categoryFilter : true;
+    const matchesLevel = levelFilter === "all" ? true : workout.level === levelFilter;
+    const matchesCategory = categoryFilter === "all" ? true : workout.category === categoryFilter;
     return matchesSearch && matchesLevel && matchesCategory;
   });
 
@@ -50,7 +50,7 @@ const WorkoutList = ({ workouts, title, showFilters = false }: WorkoutListProps)
                   <SelectValue placeholder="Difficulty" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Levels</SelectItem>
+                  <SelectItem value="all">All Levels</SelectItem>
                   <SelectItem value="beginner">Beginner</SelectItem>
                   <SelectItem value="intermediate">Intermediate</SelectItem>
                   <SelectItem value="advanced">Advanced</SelectItem>
@@ -64,7 +64,7 @@ const WorkoutList = ({ workouts, title, showFilters = false }: WorkoutListProps)
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Categories</SelectItem>
+                  <SelectItem value="all">All Categories</SelectItem>
                   <SelectItem value="bro-split">Bro Split</SelectItem>
                   <SelectItem value="push-pull">Push Pull</SelectItem>
                   <SelectItem value="full-body">Full Body</SelectItem>
@@ -79,8 +79,8 @@ const WorkoutList = ({ workouts, title, showFilters = false }: WorkoutListProps)
               variant="outline" 
               onClick={() => {
                 setSearchTerm("");
-                setLevelFilter("");
-                setCategoryFilter("");
+                setLevelFilter("all");
+                setCategoryFilter("all");
               }}
             >
               Reset
