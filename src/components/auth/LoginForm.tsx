@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Mail, Lock } from "lucide-react";
 
 const LoginForm = () => {
@@ -14,6 +14,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const LoginForm = () => {
     try {
       await login(email, password);
       toast.success("Login successful!");
+      navigate("/"); // Redirect to dashboard (index page)
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error(error);
