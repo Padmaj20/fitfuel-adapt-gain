@@ -95,7 +95,7 @@ const WorkoutCard = ({ workout, onClick }: WorkoutCardProps) => {
       </CardContent>
       <CardFooter className="pt-0">
         <Button variant="default" className="w-full">
-          Start Workout
+          View Workout
         </Button>
       </CardFooter>
     </Card>

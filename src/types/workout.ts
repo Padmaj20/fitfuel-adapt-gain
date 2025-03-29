@@ -17,6 +17,7 @@ export type Exercise = {
   equipment: string[];
   image?: string;
   video?: string;
+  animation?: string; // URL to GIF or animation
   sets: number;
   reps: number;
   restTime: number; // in seconds

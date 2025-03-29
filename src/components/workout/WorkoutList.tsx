@@ -11,9 +11,10 @@ interface WorkoutListProps {
   workouts: Workout[];
   title?: string;
   showFilters?: boolean;
+  onWorkoutClick?: (workout: Workout) => void;
 }
 
-const WorkoutList = ({ workouts, title, showFilters = false }: WorkoutListProps) => {
+const WorkoutList = ({ workouts, title, showFilters = false, onWorkoutClick }: WorkoutListProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [levelFilter, setLevelFilter] = useState<string>("all");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
@@ -25,6 +26,12 @@ const WorkoutList = ({ workouts, title, showFilters = false }: WorkoutListProps)
     const matchesCategory = categoryFilter === "all" ? true : workout.category === categoryFilter;
     return matchesSearch && matchesLevel && matchesCategory;
   });
+
+  const handleWorkoutClick = (workout: Workout) => {
+    if (onWorkoutClick) {
+      onWorkoutClick(workout);
+    }
+  };
 
   return (
     <div className="space-y-6 w-full">
@@ -92,7 +99,11 @@ const WorkoutList = ({ workouts, title, showFilters = false }: WorkoutListProps)
       {filteredWorkouts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredWorkouts.map((workout) => (
-            <WorkoutCard key={workout.id} workout={workout} />
+            <WorkoutCard 
+              key={workout.id} 
+              workout={workout} 
+              onClick={() => handleWorkoutClick(workout)}
+            />
           ))}
         </div>
       ) : (
