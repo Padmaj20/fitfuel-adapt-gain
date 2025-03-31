@@ -16,7 +16,7 @@ const Logo = ({ className, size = "md" }: LogoProps) => {
   return (
     <div className={cn("flex items-center", className)}>
       <img 
-        src="/lovable-uploads/75ee00ef-8d51-4d7b-9242-d61e7643b100.png" 
+        src="/lovable-uploads/8df0d9e9-19a0-4dd7-baf4-d8536e5d682a.png" 
         alt="FitFuel Logo" 
         className={cn("object-contain", sizeClasses[size])}
       />
