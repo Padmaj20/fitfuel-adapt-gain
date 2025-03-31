@@ -17,7 +17,7 @@ const AppLayout = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <header className="border-b py-2 px-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Logo size="sm" />
+          <Logo size={isMobile ? "sm" : "sm"} />
           <h1 className="text-xl font-bold text-primary">FitFuel</h1>
         </div>
       </header>
