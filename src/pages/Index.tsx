@@ -9,6 +9,7 @@ import UserSetupForm from "@/components/auth/UserSetupForm";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useTheme } from "@/contexts/ThemeContext";
+import Logo from "@/components/layout/Logo";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -26,6 +27,9 @@ const Dashboard = () => {
       <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
+            <div className="flex justify-center mb-4">
+              <Logo size="lg" />
+            </div>
             <h1 className="text-4xl font-extrabold tracking-tight text-gradient">
               FitFuel
             </h1>
