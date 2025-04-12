@@ -46,8 +46,9 @@ const ExerciseAnimation = ({ exercise, isExpanded = false }: ExerciseAnimationPr
             </Button>
           </div>
         ) : (
-          <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-            <Dumbbell className="w-12 h-12 text-muted-foreground/50" />
+          <div className="w-full h-48 bg-gray-100 flex flex-col items-center justify-center">
+            <Dumbbell className="w-12 h-12 text-muted-foreground/50 mb-2" />
+            <p className="text-muted-foreground text-center">Content not available</p>
           </div>
         )}
       </div>

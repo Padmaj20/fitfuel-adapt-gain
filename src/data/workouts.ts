@@ -1,3 +1,4 @@
+
 import { Workout, WorkoutPlan } from "@/types/workout";
 
 export const popularWorkouts: Workout[] = [
@@ -44,7 +45,7 @@ export const popularWorkouts: Workout[] = [
           "Lower bar to mid-chest",
           "Press bar back to starting position"
         ],
-        animation: "https://media.giphy.com/media/XFikNoGR4caWDDYz0n/giphy.gif"
+        animation: null
       },
       {
         id: "e3",
