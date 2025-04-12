@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Mail, Lock, User, Apple } from "lucide-react";
+import { ArrowRight, Mail, Lock, User, Facebook } from "lucide-react";
 
 const SignUpForm = () => {
   const [name, setName] = useState("");
@@ -145,8 +144,8 @@ const SignUpForm = () => {
             Google
           </Button>
           <Button variant="outline" className="w-full" disabled>
-            <Apple className="h-4 w-4 mr-2" />
-            Apple
+            <Facebook className="h-4 w-4 mr-2" />
+            Facebook
           </Button>
         </div>
         
