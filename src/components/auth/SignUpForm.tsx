@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Mail, Lock, User, Facebook } from "lucide-react";
+import { ArrowRight, Mail, Lock, User } from "lucide-react";
 
 const SignUpForm = () => {
   const [name, setName] = useState("");
@@ -135,16 +135,19 @@ const SignUpForm = () => {
         
         <div className="grid grid-cols-2 gap-3 w-full">
           <Button variant="outline" className="w-full" disabled>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4 mr-2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M1 12c0-3.3 2.7-6 6-6 1.7 0 3.2.7 4.2 1.8L13 9.5C7.3 9.5 5.6 15 5.6 15c-.2.7-.4 1.2-.4 2H1v-5Z" />
-              <path d="M17 15h-2v-2" />
-              <path d="M15 15.9c1 1.2 2.5 1.9 4 1.9 2.5 0 4.5-1.8 4.5-4s-2-4-4.5-4c-3 0-4.5 2.2-4.5 4s1.5 4 4.5 4Z" />
-              <path d="M23 10V8h-8v2" />
-            </svg>
+            <img 
+              src="/lovable-uploads/f5c5d267-b29d-4078-91b0-9ce8ef53682e.png" 
+              alt="Google" 
+              className="h-4 w-4 mr-2" 
+            />
             Google
           </Button>
           <Button variant="outline" className="w-full" disabled>
-            <Facebook className="h-4 w-4 mr-2" />
+            <img 
+              src="/lovable-uploads/f45c6d26-6f4a-4a76-92bf-49b85b60b221.png" 
+              alt="Facebook" 
+              className="h-4 w-4 mr-2" 
+            />
             Facebook
           </Button>
         </div>
