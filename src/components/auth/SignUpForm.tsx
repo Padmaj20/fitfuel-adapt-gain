@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Mail, Lock, User } from "lucide-react";
 
 const SignUpForm = () => {
@@ -16,6 +16,7 @@ const SignUpForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { signUp } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,10 +30,11 @@ const SignUpForm = () => {
     
     try {
       await signUp(email, password, name);
-      toast.success("Account created successfully!");
+      // We don't navigate here because we want the user to verify their email first
+      // The toast message is shown in the auth context
     } catch (error) {
-      toast.error("Sign up failed. Please try again.");
-      console.error(error);
+      // Error is already handled in the auth context
+      console.error("Sign up error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -133,10 +135,10 @@ const SignUpForm = () => {
         </div>
         
         <div className="grid grid-cols-2 gap-3 w-full">
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full" disabled>
             Google
           </Button>
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full" disabled>
             Apple
           </Button>
         </div>

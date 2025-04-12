@@ -21,13 +21,19 @@ const Profile = () => {
   const [saveWorkouts, setSaveWorkouts] = useState(true);
   
   if (!user) {
+    navigate("/login");
     return null;
   }
   
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-    toast.success("You've been successfully logged out");
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+      toast.success("You've been successfully logged out");
+    } catch (error) {
+      toast.error("Failed to log out");
+      console.error(error);
+    }
   };
   
   const formatGoal = (goal: string | undefined) => {

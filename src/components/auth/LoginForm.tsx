@@ -22,11 +22,10 @@ const LoginForm = () => {
     
     try {
       await login(email, password);
-      toast.success("Login successful!");
       navigate("/"); // Redirect to dashboard (index page)
     } catch (error) {
-      toast.error("Login failed. Please try again.");
-      console.error(error);
+      // Error is already handled in the auth context
+      console.error("Login error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -100,10 +99,10 @@ const LoginForm = () => {
         </div>
         
         <div className="grid grid-cols-2 gap-3 w-full">
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full" disabled>
             Google
           </Button>
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full" disabled>
             Apple
           </Button>
         </div>

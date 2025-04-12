@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WorkoutList from "@/components/workout/WorkoutList";
 import WorkoutDetail from "@/components/workout/WorkoutDetail";
 import { popularWorkouts } from "@/data/workouts";
@@ -8,12 +8,46 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PlusCircle, Heart, Clock } from "lucide-react";
 import { toast } from "sonner";
 import { Workout } from "@/types/workout";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const Workouts = () => {
   const [activeTab, setActiveTab] = useState("discover");
   const [selectedWorkout, setSelectedWorkout] = useState<Workout | null>(null);
+  const [favoriteWorkouts, setFavoriteWorkouts] = useState<Workout[]>([]);
+  const [recentWorkouts, setRecentWorkouts] = useState<Workout[]>([]);
+  const { user } = useAuth();
   
-  const favoriteWorkouts = popularWorkouts.filter(workout => workout.isFavorite);
+  // We're still using the demo workouts for discovery, but in a real app
+  // these would come from Supabase as well
+  
+  useEffect(() => {
+    if (user) {
+      // In a real app, you would fetch the user's favorite and recent workouts from Supabase
+      // For now, we're just filtering the mock data
+      setFavoriteWorkouts(popularWorkouts.filter(workout => workout.isFavorite));
+      
+      // Fetch user's completed workouts from Supabase
+      const fetchRecentWorkouts = async () => {
+        const { data, error } = await supabase
+          .from('user_workouts')
+          .select('*')
+          .eq('user_id', user.id)
+          .order('completed_at', { ascending: false })
+          .limit(5);
+          
+        if (error) {
+          console.error("Error fetching recent workouts:", error);
+          return;
+        }
+        
+        // In a real app, you would map these to workout objects
+        console.log("Recent workouts:", data);
+      };
+      
+      fetchRecentWorkouts();
+    }
+  }, [user]);
   
   const handleCreateWorkout = () => {
     toast.info("Custom workout creation will be available in the next update!");
